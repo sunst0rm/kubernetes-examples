@@ -5,5 +5,16 @@ metadata:
   labels:
     app: myapp
     type: front-end
-    
-spec:
+
+spec:         # ReplicationController spec
+  template:   # copied pod definition from another example
+    metadata:
+      name: test-app
+      labels:
+        app: myapp
+        type: front-end
+
+    spec:     # pod spec
+      containers:
+        - name: nginx-container
+          image: nginx
