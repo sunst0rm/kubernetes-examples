@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+
+spec:
+  template:   # copied pod definition from another example
+      metadata:
+        name: test-app
+        labels:
+          app: myapp
+          type: front-end
+
+      spec:     # pod spec
+        containers:
+          - name: nginx-container
+            image: nginx
+
+  replicas: 3
+  selector:    # defines pods managed according to given label
+    matchLabels:
+      type: front-end
